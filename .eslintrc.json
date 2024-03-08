@@ -1,3 +1,20 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "next"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".jsx",
+          ".tsx"
+        ]
+      }
+    ]
+  },
+  "plugins": [
+    "@next/eslint-plugin-next"
+  ]
 }
