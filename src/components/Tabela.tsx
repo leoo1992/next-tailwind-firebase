@@ -1,47 +1,92 @@
 import Cliente from "@/core/Cliente";
+import { iconeEditar, iconeDeletar } from "./ActionsIconsGroup";
 
 interface TabelaProps {
-  clientes: Cliente[];
+  cliente: Cliente[];
+  // selecaoCliente?: (cliente: Cliente) => void;
+  // excluirCliente?: (cliente: Cliente) => void;
 }
-
 export default function Tabela(props: TabelaProps) {
+  // const exibirAcoes = props.selecaoCliente || props.excluirCliente;
+
   function renderizarCabecalho() {
     return (
-      <tr>
-        <th className="p-2">Id</th>
-        <th className="p-2">Nome</th>
-        <th className="p-2">Idade</th>
-        <th className="p-2">Actions</th>
-        <th></th>
+      <tr className="w-full">
+        <th className="cursor-pointer w-1/4 sm:w-1/6 lg:w-1/12 pt-1 p-1 transition-all duration-1000 ease-in-out opacity-50 hover:bg-violet-900 hover:opacity-100">
+          Id
+        </th>
+        <th className="text-start cursor-pointer w-1/2 sm:w-1/3 lg:w-1/4 pt-1 p-1 transition-all duration-1000 ease-in-out opacity-50 hover:bg-violet-900 hover:opacity-100">
+          Nome
+        </th>
+        <th className="cursor-pointer w-1/4 sm:w-1/6 lg:w-1/12 pt-1 p-1 transition-all duration-1000 ease-in-out opacity-50 hover:bg-violet-900 hover:opacity-100">
+          Idade
+        </th>
+        {/* {exibirAcoes ? (
+          <th className=" w-1/4 sm:w-1/6 lg:w-1/12 pt-1 p-1"></th>
+        ) : (
+          false
+        )} */}
       </tr>
     );
   }
 
   function renderizarDados() {
-    return props.clientes?.map((cliente, i) => {
+    return props.cliente?.map((cliente, i) => {
       return (
-        <tr key={cliente.id}>
-          <td className="text-center p-1">{cliente.id}</td>
-          <td className="p-1">{cliente.nome}</td>
-          <td className="text-center p-1">{cliente.idade}</td>
+        <tr
+          key={cliente.id}
+          className={`w-full transition-all duration-1000 ease-in-out ${
+            i % 2 === 0
+              ? "bg-indigo-950 shadow hover:bg-indigo-500"
+              : "bg-violet-950 hover:bg-violet-500"
+          }`}
+        >
+          <td className="w-1/4 sm:w-1/6 lg:w-1/12 text-center pt-1 pb-1">
+            {cliente.id}
+          </td>
+          <td className="w-1/2 sm:w-1/3 lg:w-1/4 pt-1 pb-1">{cliente.nome}</td>
+          <td className="w-1/4 sm:w-1/6 lg:w-1/12 text-center pt-1 pb-1">
+            {cliente.idade}
+          </td>
+          {/* {exibirAcoes ? renderizarAcoes(cliente) : false} */}
         </tr>
       );
     });
   }
 
+  function renderizarAcoes(cliente: Cliente) {
+    return (
+      <td className="text-center flex justify-end items-center align-middle content-end self-center">
+        {/* {props.selecaoCliente ? (
+          <button onClick={() => props?.selecaoCliente?.(cliente)}>
+            {iconeEditar(cliente)}
+          </button>
+        ) : (
+          false
+        )}
+        {props.excluirCliente ? (
+          <button onClick={() => props?.excluirCliente?.(cliente)}>
+            {iconeDeletar(cliente)}
+          </button>
+        ) : (
+          false
+        )} */}
+      </td>
+    );
+  }
+
   return (
-    <table
-      className={`w-full rounded-lg overflow-hidden 
-      shadow-sm shadow-purple-500 border-none`}
-    >
-      <thead
-        className={`bg-gradient-to-r from-indigo-950 to-purple-950
-        shadow-sm shadow-purple-500 border-none
-        `}
+    <div className="overflow-x-auto overflow-y-auto">
+      <table
+        className={`table-auto w-full rounded-lg overflow-hidden text-indigo-100`}
       >
-        {renderizarCabecalho()}
-      </thead>
-      <tbody>{renderizarDados()}</tbody>
-    </table>
+        <thead
+          className={`w-full bg-gradient-to-r from-indigo-950 to-purple-950`}
+        >
+          {renderizarCabecalho()}
+        </thead>
+        <tbody className="w-full">{renderizarDados()}</tbody>
+      </table>
+    </div>
   );
 }
