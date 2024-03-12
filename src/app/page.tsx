@@ -1,11 +1,22 @@
+"use client";
 import Layout from "@/components/Layout";
 import "./globals.css";
 import Tabela from "@/components/Tabela";
 import Cliente from "@/core/Cliente";
 import Botao from "@/components/Botao";
 import Formulario from "@/components/Formulario";
+import { useState } from "react";
 
 export default function Home() {
+  const [tabelaAtiva, setTabelaAtiva] = useState(true);
+  const [tamanho] = useState(tabelaAtiva ? "w-11/12" : "w-2/3");
+  const [textoBotao, setTextoBotao] = useState(tabelaAtiva ? "Novo" : "Listar");
+
+  const toggleTabela = () => {
+    setTabelaAtiva(!tabelaAtiva);
+    setTextoBotao(tabelaAtiva ? "Listar" : "Novo");
+  };
+
   const clientes: Cliente[] = [
     new Cliente("1", "Ana", 22),
     new Cliente("2", "João", 27),
@@ -21,6 +32,7 @@ export default function Home() {
   function selecaoCliente(cliente: Cliente) {
     console.log(cliente.nome);
   }
+
   function excluirCliente(cliente: Cliente) {
     console.log(cliente.nome);
   }
@@ -28,7 +40,9 @@ export default function Home() {
   return (
     <main
       className={`animated-background flex h-screen flex-col items-center justify-center 
-      bg-gradient-to-tr from-purple-300 to-sky-300 opacity-90 overflow-x-auto overflow-y-auto`}
+      bg-gradient-to-tr from-purple-300 to-sky-300 opacity-90 overflow-x-auto overflow-y-auto
+      transition-all duration-1000 ease-in-out
+      `}
     >
       <span
         className={`text-transparent bg-clip-text font-extrabold
@@ -41,13 +55,20 @@ export default function Home() {
       >
         Clientes
       </span>
-      <Layout titulo="Lista de Clientes">
+      <Layout titulo="Lista de Clientes" w={tamanho}>
         <div className="flex justify-end">
-          <Botao>Novo</Botao>
+          <Botao onClick={toggleTabela}>{textoBotao}</Botao>
         </div>
-        {/* <Formulario /> */}
-        <Tabela cliente={clientes} ></Tabela>
-        {/* selecaoCliente={selecaoCliente} excluirCliente={excluirCliente} */}
+
+        {tabelaAtiva ? (
+          <Tabela
+            cliente={clientes}
+            selecaoCliente={selecaoCliente}
+            excluirCliente={excluirCliente}
+          ></Tabela>
+        ) : (
+          <Formulario />
+        )}
       </Layout>
     </main>
   );

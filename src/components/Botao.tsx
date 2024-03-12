@@ -1,11 +1,13 @@
 interface BotaoProps {
   children: any;
+  onClick: () => any | void;
 }
-
 
 export default function Botao(props : BotaoProps) {
   return (
     <button
+
+    onClick={props.onClick}
       className="flex items-center bg-violet-800 p-2 mb-3 font-extrabold
     sm:rounded-xl md:rounded-xl lg:rounded-xl xl:rounded-xl rounded-full opacity-80 hover:opacity-100"
     >

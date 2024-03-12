@@ -1,6 +1,4 @@
-import Cliente from "@/core/Cliente";
-
-export const iconeDeletar = (cliente: Cliente) => {
+export const iconeDeletar = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +17,7 @@ export const iconeDeletar = (cliente: Cliente) => {
   );
 };
 
-export const iconeEditar = (cliente: Cliente) => {
+export const iconeEditar = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -34,4 +32,3 @@ export const iconeEditar = (cliente: Cliente) => {
     </svg>
   );
 };
-

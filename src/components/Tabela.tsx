@@ -1,13 +1,14 @@
+'use client'
 import Cliente from "@/core/Cliente";
 import { iconeEditar, iconeDeletar } from "./ActionsIconsGroup";
 
 interface TabelaProps {
   cliente: Cliente[];
-  // selecaoCliente?: (cliente: Cliente) => void;
-  // excluirCliente?: (cliente: Cliente) => void;
+  selecaoCliente?: (cliente: Cliente) => void;
+  excluirCliente?: (cliente: Cliente) => void;
 }
 export default function Tabela(props: TabelaProps) {
-  // const exibirAcoes = props.selecaoCliente || props.excluirCliente;
+  const exibirAcoes = props.selecaoCliente || props.excluirCliente;
 
   function renderizarCabecalho() {
     return (
@@ -21,11 +22,11 @@ export default function Tabela(props: TabelaProps) {
         <th className="cursor-pointer w-1/4 sm:w-1/6 lg:w-1/12 pt-1 p-1 transition-all duration-1000 ease-in-out opacity-50 hover:bg-violet-900 hover:opacity-100">
           Idade
         </th>
-        {/* {exibirAcoes ? (
+        {exibirAcoes ? (
           <th className=" w-1/4 sm:w-1/6 lg:w-1/12 pt-1 p-1"></th>
         ) : (
           false
-        )} */}
+        )}
       </tr>
     );
   }
@@ -48,7 +49,7 @@ export default function Tabela(props: TabelaProps) {
           <td className="w-1/4 sm:w-1/6 lg:w-1/12 text-center pt-1 pb-1">
             {cliente.idade}
           </td>
-          {/* {exibirAcoes ? renderizarAcoes(cliente) : false} */}
+          {exibirAcoes ? renderizarAcoes(cliente) : false}
         </tr>
       );
     });
@@ -57,26 +58,26 @@ export default function Tabela(props: TabelaProps) {
   function renderizarAcoes(cliente: Cliente) {
     return (
       <td className="text-center flex justify-end items-center align-middle content-end self-center">
-        {/* {props.selecaoCliente ? (
+        {props.selecaoCliente ? (
           <button onClick={() => props?.selecaoCliente?.(cliente)}>
-            {iconeEditar(cliente)}
+            {iconeEditar()}
           </button>
         ) : (
           false
         )}
         {props.excluirCliente ? (
           <button onClick={() => props?.excluirCliente?.(cliente)}>
-            {iconeDeletar(cliente)}
+            {iconeDeletar()}
           </button>
         ) : (
           false
-        )} */}
+        )}
       </td>
     );
   }
 
   return (
-    <div className="overflow-x-auto overflow-y-auto">
+    <div className="overflow-x-auto overflow-y-auto transition-all duration-1000 ease-in-out">
       <table
         className={`table-auto w-full rounded-lg overflow-hidden text-indigo-100`}
       >
