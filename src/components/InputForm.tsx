@@ -1,26 +1,17 @@
-
-interface InputProps {
-  text: string;
-  tipo: "text" | "number";
-  tipe?:"text"
-  valor: any;
-  readonly?: boolean;
-  onChange?: (valor: any) => void;
-  placeholder?: string;
-}
-
+"use client";
+import "../styles/globals.css";
+import InputProps from "@/types/interfaces/InputProps";
 export default function InputForm(props: InputProps) {
 
   return (
-    <div className="flex flex-col my-3">
-      <label className="mb-2 ml-2">{props.text}</label>
+    <div className={`${props.divClass || 'flex flex-col mb-3'}`} >
+      <label className="mb-1 ml-2">{props.text}</label>
       <input
         className={`
-        ${props.tipo === "number" ? "text-center" : ""} 
-        mx-3 mb-4 border-2 border-purple-600 rounded-full px-3 py-2
-        focus:outline-none bg-gray-800 opacity-50 hover:opacity-100 transition-all duration-1000 ease-in-out
-        `}
-        style={props.tipo === "number" ? {width: props.valor || props.valor === 0 ? "100px" : "200px"} : {}}
+        ${props.tipo === "number" ? "text-center" : "w-full"} 
+        mb-1  rounded-lg p-2 bg-gray-800
+        ${props.className}`}
+        style={props.tipo === "number" ? {width: props.valor || props.valor === 0 ? "60px" : "200px"} : {}}
         type={props.tipe ?? "text"}
         value={props.valor}
         readOnly={props.readonly}

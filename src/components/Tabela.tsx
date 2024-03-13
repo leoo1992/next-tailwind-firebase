@@ -1,12 +1,9 @@
-'use client'
-import Cliente from "@/core/Cliente";
+"use client";
+import Cliente from "@/types/Cliente";
 import { iconeEditar, iconeDeletar } from "./ActionsIconsGroup";
+import TabelaProps from "@/types/interfaces/TabelaProps";
 
-interface TabelaProps {
-  cliente: Cliente[];
-  selecaoCliente?: (cliente: Cliente) => void;
-  excluirCliente?: (cliente: Cliente) => void;
-}
+
 export default function Tabela(props: TabelaProps) {
   const exibirAcoes = props.selecaoCliente || props.excluirCliente;
 
@@ -17,7 +14,7 @@ export default function Tabela(props: TabelaProps) {
           Id
         </th>
         <th className="text-start cursor-pointer w-1/2 sm:w-1/3 lg:w-1/4 pt-1 p-1 transition-all duration-1000 ease-in-out opacity-50 hover:bg-violet-900 hover:opacity-100">
-          Nome
+          <span className="ml-5">Nome</span>
         </th>
         <th className="cursor-pointer w-1/4 sm:w-1/6 lg:w-1/12 pt-1 p-1 transition-all duration-1000 ease-in-out opacity-50 hover:bg-violet-900 hover:opacity-100">
           Idade
@@ -79,7 +76,7 @@ export default function Tabela(props: TabelaProps) {
   return (
     <div className="overflow-x-auto overflow-y-auto transition-all duration-1000 ease-in-out">
       <table
-        className={`table-auto w-full rounded-lg overflow-hidden text-indigo-100`}
+        className={`mt-2 table-auto w-full rounded-lg overflow-hidden text-indigo-100 transition-all duration-1000 ease-in-out`}
       >
         <thead
           className={`w-full bg-gradient-to-r from-indigo-950 to-purple-950`}

@@ -9,6 +9,10 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        'xs': {'max': '425px'},
+        'xxs': {'max': '325px'},
+      }
     },
   },
   plugins: [],
