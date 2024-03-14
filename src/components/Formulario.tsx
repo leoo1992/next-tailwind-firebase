@@ -8,24 +8,24 @@ import FormProps from "@/types/interfaces/FormProps";
 export default function Formulario(props: FormProps) {
   const id = props.cliente?.id;
   const [nome, setNome] = useState(props.cliente?.nome ?? "");
-  const [idade, setIdade] = useState(props.cliente?.idade ?? "");
+  const [idade, setIdade] : any = useState(props.cliente?.idade ?? "0");
   const [idadeValida, setIdadeValida] = useState(true);
 
   const validarIdade = (value: any) => {
     const stringValue = value.toString().toLowerCase();
 
     if (!value) {
-      setIdade(0);
+      setIdade("0");
       return idade;
     }
 
-    if (value == 0) {
-      setIdade(0);
+    if (value == "0") {
+      setIdade("0");
       return idade;
     }
 
     if (stringValue.includes("e") || isNaN(Number(value))) {
-      setIdade(0);
+      setIdade("0");
       setIdadeValida(false);
       return idade;
     } else {
@@ -39,7 +39,7 @@ export default function Formulario(props: FormProps) {
         setIdadeValida(true);
         return intValue;
       } else {
-        setIdade(0);
+        setIdade("0");
         setIdadeValida(false);
         return idade;
       }
@@ -75,7 +75,7 @@ export default function Formulario(props: FormProps) {
         text="Idade"
         tipo="number"
         valor={idade}
-        onChange={(value: number) => setIdade(validarIdade(value))}
+        onChange={(value: any) => setIdade(validarIdade(value))}
         placeholder="Digite a idade"
         className="border-2 border-purple-600 focus:outline-none opacity-50 
         hover:opacity-100 transition-all duration-1000 ease-in-out"
