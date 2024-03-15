@@ -7,6 +7,16 @@ import FormProps from "@/types/interfaces/FormProps";
 
 export default function Formulario(props: FormProps) {
   const id = props.cliente?.id;
+  const ID = id && typeof id === "string" ? id.substring(0, 4) : "";
+  const numericID = parseInt(
+    ID
+      .split("")
+      .map((char) => char.charCodeAt(0))
+      .join(""),
+    10
+  );
+  const firstFiveDigits = parseInt(numericID.toString().substring(0, 4));
+
   const [nome, setNome] = useState(props.cliente?.nome ?? "");
   const [idade, setIdade] : any = useState(props.cliente?.idade ?? "0");
   const [idadeValida, setIdadeValida] = useState(true);
@@ -56,7 +66,7 @@ export default function Formulario(props: FormProps) {
           divClass="flex flex-row mx-0 mt-0 mb-2 p-0 bg-transparent border-0 opacity-100"
           text="Id:"
           tipo="number"
-          valor={id}
+          valor={firstFiveDigits}
           readonly
         />
       ) : (
@@ -91,7 +101,7 @@ export default function Formulario(props: FormProps) {
 
       <div className="flex justify-end mx-1 mb-1 mt-10 gap-2 transition-all duration-1000 ease-in-out">
         <button
-          className="flex align-middle justify-center content-center items-center bg-sky-700 p-2 font-extrabold
+          className="flex align-middle justify-center content-center items-center bg-green-950 p-2 font-extrabold
            rounded-full opacity-80 hover:opacity-100 hover:bg-green-700 hover:scale-105 transition-all duration-1000 ease-in-out"
         onClick={() =>{ props.clienteChanged?.(new Cliente(id, nome, idade)); props.onClick()}}
         >
@@ -113,7 +123,7 @@ export default function Formulario(props: FormProps) {
           </div>
         </button>
         <button
-          className="flex align-middle justify-center content-center items-center bg-slate-800 p-2 font-extrabold
+          className="flex align-middle justify-center content-center items-center bg-red-950 p-2 font-extrabold
         rounded-full opacity-80 hover:opacity-100  hover:bg-red-700 hover:scale-105 transition-all duration-1000 ease-in-out"
           onClick={props.onClick}
         >

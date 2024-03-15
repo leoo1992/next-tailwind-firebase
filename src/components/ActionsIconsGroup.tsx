@@ -4,9 +4,9 @@ export const iconeDeletar = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16 16"
       fill="currentColor"
-      className={`mt-1 mb-1 ml-1 mr-4 p-1 shadow-sm shadow-purple-600 bg-black text-red-600 
-        rounded-full w-10 text-center flex justify-center items-center align-middle content-center 
-        self-center cursor-pointer opacity-75 hover:opacity-100 hover:shadow-lg hover:border hover:border-purple-600`}
+      className={`mt-1 mb-1 ml-1 mr-2 p-1 shadow-sm shadow-purple-600 bg-black text-red-600 
+    rounded-full w-8 h-8  text-center flex justify-center items-center align-middle content-center 
+    self-center cursor-pointer opacity-75 hover:opacity-100 hover:shadow-lg hover:border hover:border-purple-600`}
     >
       <path
         fillRule="evenodd"
@@ -23,8 +23,8 @@ export const iconeEditar = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16 16"
       fill="currentColor"
-      className={`mt-1 mb-1 ml-1 mr-4 p-1 shadow-sm shadow-purple-600 bg-black text-green-500 
-    rounded-full w-10 text-center flex justify-center items-center align-middle content-center 
+      className={`my-1  p-1 shadow-sm shadow-purple-600 bg-black text-green-500 
+    rounded-full w-8 h-8  text-center flex justify-center items-center align-middle content-center 
     self-center cursor-pointer opacity-75 hover:opacity-100 hover:shadow-lg hover:border hover:border-purple-600 `}
     >
       <path d="M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z" />
