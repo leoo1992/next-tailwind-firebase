@@ -1,40 +1,34 @@
 "use client";
 import Cliente from "@/types/Cliente";
-import { iconeEditar, iconeDeletar } from "./ActionsIconsGroup";
+import { iconeEditar, iconeDeletar } from "./IconsActions";
 import TabelaProps from "@/types/interfaces/TabelaProps";
+import { PropagateLoader } from "react-spinners";
 
-
-export default function Tabela(props: TabelaProps) {
+export default function Table(props: TabelaProps) {
   const exibirAcoes = props.selecaoCliente || props.excluirCliente;
 
   function extrairNumeros(id: string): string {
     const ID = id && typeof id === "string" ? id.substring(0, 4) : "";
-    const numericID = 
-      ID
-        .split("")
-        .map((char) => char.charCodeAt(0))
-        .join("");
-  
-    return numericID.substring(0, 4); 
+    const numericID = ID.split("")
+      .map((char) => char.charCodeAt(0))
+      .join("");
+
+    return numericID.substring(0, 4);
   }
 
   function renderizarCabecalho() {
     return (
       <tr className="w-full">
         <th className="cursor-pointer w-1/4 sm:w-1/6 lg:w-1/12 pt-1 p-1 transition-all duration-1000 ease-in-out opacity-50 hover:bg-violet-900 hover:opacity-100">
-        <span className="m-2">Id</span>
+          <span className="m-2">Id</span>
         </th>
         <th className="cursor-pointer w-1/2 sm:w-1/3 lg:w-1/4 pt-1 p-1 transition-all duration-1000 ease-in-out opacity-50 hover:bg-violet-900 hover:opacity-100">
           <span className="m-2">Nome</span>
         </th>
         <th className="cursor-pointer w-1/4 sm:w-1/6 lg:w-1/12 pt-1 p-1 transition-all duration-1000 ease-in-out opacity-50 hover:bg-violet-900 hover:opacity-100">
-        <span className="m-2">Idade</span>
+          <span className="m-2">Idade</span>
         </th>
-        {exibirAcoes ? (
-          <th className="m-0 p-0"></th>
-        ) : (
-          false
-        )}
+        {exibirAcoes ? <th className="m-0 p-0"></th> : false}
       </tr>
     );
   }
@@ -57,7 +51,7 @@ export default function Tabela(props: TabelaProps) {
           <td className="w-1/4 sm:w-1/6 lg:w-1/12 text-center pt-1 pb-1">
             <span className="p-2">{cliente.idade}</span>
           </td>
-{exibirAcoes ? renderizarAcoes(cliente) : false}
+          {exibirAcoes ? renderizarAcoes(cliente) : false}
         </tr>
       );
     });
@@ -67,14 +61,20 @@ export default function Tabela(props: TabelaProps) {
     return (
       <td className="text-center flex justify-end items-center align-middle content-end self-center">
         {props.selecaoCliente ? (
-          <button className='p-0 m-0' onClick={() => props?.selecaoCliente?.(cliente)}>
+          <button
+            className="p-0 m-0"
+            onClick={() => props?.selecaoCliente?.(cliente)}
+          >
             {iconeEditar()}
           </button>
         ) : (
           false
         )}
         {props.excluirCliente ? (
-          <button className='p-0 m-0' onClick={() => props?.excluirCliente?.(cliente)}>
+          <button
+            className="p-0 m-0"
+            onClick={() => props?.excluirCliente?.(cliente)}
+          >
             {iconeDeletar()}
           </button>
         ) : (
@@ -86,6 +86,14 @@ export default function Tabela(props: TabelaProps) {
 
   return (
     <div className="table-auto w-full overflow-x-auto overflow-y-auto transition-all duration-1000 ease-in-out">
+      <div>
+        <PropagateLoader
+          color="#bee2ff"
+          loading={props.loading}
+          className="m-5 p-5 inline-block text-center justify-center align-middle items-center "
+          speedMultiplier={1.5}
+        />
+      </div>
       <table
         className={`mt-2 table-auto w-full rounded-lg overflow-hidden text-indigo-100 transition-all duration-1000 ease-in-out`}
       >

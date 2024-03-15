@@ -1,5 +1,5 @@
 import LayoutProps from "@/types/interfaces/LayoutProps";
-import Titulo from "./Titulo";
+import TitleCard from "./TitleCard";
 
 export default function Layout(props: LayoutProps) {
   return (
@@ -11,7 +11,7 @@ export default function Layout(props: LayoutProps) {
        `} 
        style={props.style}
     >
-      <Titulo>{props.titulo}</Titulo>
+      <TitleCard>{props.titulo}</TitleCard>
       <div>{props.children}</div>
     </div>
   );

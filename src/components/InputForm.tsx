@@ -2,7 +2,6 @@
 import "../styles/globals.css";
 import InputProps from "@/types/interfaces/InputProps";
 export default function InputForm(props: InputProps) {
-
   return (
     <div className={`${props.divClass || 'flex flex-col mb-3'}`} >
       <label className="mb-1 ml-2">{props.text}</label>

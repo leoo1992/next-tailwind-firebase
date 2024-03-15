@@ -1,5 +1,5 @@
 
-export default function TituloPagina() {
+export default function TitlePage() {
   return (
     <span
     className={`text-transparent bg-clip-text font-extrabold

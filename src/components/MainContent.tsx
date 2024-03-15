@@ -1,17 +1,16 @@
 import "../styles/globals.css";
 import Layout from "./Layout";
-import Tabela from "./Tabela";
-import Botao from "./Botao";
-import Formulario from "./Formulario";
-import TituloPagina from "./TituloPagina";
+import Table from "./Table";
+import ButtonListOrTable from "./ButtonListOrTable";
+import FormClient from "./FormClient";
+import TitlePage from "./TitlePage";
 import useClientes from "@/hooks/useClientes";
 
 export default function MainContent() {
   const clientes = useClientes();
-
   return (
     <>
-      <TituloPagina />
+      <TitlePage />
       <Layout
         titulo={
           clientes.tabelaAtiva
@@ -21,26 +20,24 @@ export default function MainContent() {
             : "Cadastro"
         }
         w={clientes.tamanho}
-        style={clientes.tabelaAtiva ? {width: '90%'} : { width: "310px" }}
+        style={clientes.tabelaAtiva ? { width: "90%" } : { width: "310px" }}
       >
-        <div className="flex justify-end mr-1 transition-all duration-1000 ease-in-out">
-          <Botao ehTabela={clientes.tabelaAtiva} onClick={clientes.novoCliente}>
-            <span className="hover:w-10">{clientes.textoBotao}</span>
-          </Botao>
-        </div>
-
+        <ButtonListOrTable ehTabela={clientes.tabelaAtiva} onClick={clientes.novoCliente}>
+          <span className="hover:w-10">{clientes.textoBotao}</span>
+        </ButtonListOrTable>
         {clientes.tabelaAtiva ? (
-          <Tabela
+          <Table
             cliente={clientes.clientes}
             selecaoCliente={clientes.selecaoCliente}
             excluirCliente={clientes.excluirCliente}
-          ></Tabela>
+            loading={clientes.carregandoLista}
+          />
         ) : (
-          <Formulario
+          <FormClient
             clienteChanged={clientes.salvarCliente}
             onClick={clientes.novoCliente}
             cliente={clientes.client}
-          ></Formulario>
+          />
         )}
       </Layout>
     </>

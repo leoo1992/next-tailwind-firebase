@@ -1,4 +1,4 @@
-export default function Layout(props: any) {
+export default function TitleCard(props: any) {
   return (
     <div className="flex flex-col justify-center">
       <div className="flex justify-between items-center">

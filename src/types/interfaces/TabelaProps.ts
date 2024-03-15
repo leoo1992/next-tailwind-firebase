@@ -4,4 +4,5 @@ export default interface TabelaProps {
     cliente: Cliente[];
     selecaoCliente?: (cliente: Cliente) => void;
     excluirCliente?: (cliente: Cliente) => void;
+    loading?: boolean;
   }

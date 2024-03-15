@@ -8,9 +8,16 @@ export default function useClientes() {
   const [textoBotao, setTextoBotao] = useState(tabelaAtiva ? "Novo" : "Listar");
   const [client, setClient] = useState<Cliente>(Cliente.vazio());
   const [clientes, setClientes] = useState<Cliente[]>([]);
+  const [carregandoLista, setCarregandoLista] = useState(true);
 
   useEffect(() => {
-    listar();
+    const fetchData = () => {
+      setTimeout(() => {
+        listar();
+        setCarregandoLista(!carregandoLista);
+      }, 4000);
+    };
+    fetchData();
   }, []);
 
   const toggleTabela = () => {
@@ -74,5 +81,6 @@ export default function useClientes() {
     selecaoCliente,
     excluirCliente,
     salvarCliente,
+    carregandoLista,
   };
 }
