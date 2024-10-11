@@ -12,7 +12,7 @@
     "@headlessui/react": "^1.7.19",
     "@heroicons/react": "^2.1.5",
     "dotenv": "^16.4.5",
-    "next": "14.2.11",
+    "next": "14.2.13",
     "firebase": "^10.13.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
